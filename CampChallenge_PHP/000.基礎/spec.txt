@@ -1,0 +1,5 @@
+プロセッサ 2.2GHz Intel Core i7
+メモリ 16 GB 1600 MHz DDR3
+グラフィックス　Intel Iris Pro 1536MB
+ストレージ　150GB
+ディスプレイ 15.4インチ 2880*1800
