@@ -1,8 +1,13 @@
 <?php
-const NUMBER1 = 88;
-$number2 = 55;
-echo NUMBER1 + $number2."<br>";
-echo NUMBER1 - $number2."<br>";
-echo NUMBER1 * $number2."<br>";
-echo NUMBER1 / $number2."<br>";
-echo NUMBER1 % $number2."<br>";
+<?php
+$sample = "サンプル";
+
+// シングルクォーテーションの場合、
+// $sampleは文字として扱われるので、
+// 「このプログラムの変すは、$sampleです。」と表示される
+echo 'このプログラムの変数は、$sampleです。';
+
+// ダブルクォーテーションの場合、
+// $sampleが中身に置き換わるので
+// 「このプログラムの変数は、サンプルです。」と表示される
+echo "このプログラムの変数は、$sampleです。";
