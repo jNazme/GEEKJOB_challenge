@@ -1,0 +1,12 @@
+<?php
+$var = 2;
+$message = "";
+if($var == 1){
+  echo "1です!";
+}elseif ($var == 2) {
+  # code...
+  echo "プログラミングキャンプ！";
+}else {
+
+  echo "その他です！";
+}
