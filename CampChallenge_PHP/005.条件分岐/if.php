@@ -1,12 +1,7 @@
 <?php
-$var = 2;
-$message = "";
-if($var == 1){
-  echo "1です!";
-}elseif ($var == 2) {
+$var = 8;
+for ($i=0; $i < 20 ; $i++) {
   # code...
-  echo "プログラミングキャンプ！";
-}else {
-
-  echo "その他です！";
+  $var *= 8;
+  echo $var
 }
