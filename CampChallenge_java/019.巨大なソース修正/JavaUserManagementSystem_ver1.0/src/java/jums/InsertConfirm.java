@@ -35,22 +35,18 @@ public class InsertConfirm extends HttpServlet {
             }
             
             //フォームからの入力を取得
-            String name = request.getParameter("name");
-            String year = request.getParameter("year");
-            String month = request.getParameter("month");
-            String day = request.getParameter("day");
-            String type = request.getParameter("type");
-            String tell = request.getParameter("tell");
-            String comment = request.getParameter("comment");
+            UserDataBeans bean = new UserDataBeans();
+            bean.setName(request.getParameter("name"));
+            bean.setYear(request.getParameter("year"));
+            bean.setMonth(request.getParameter("month"));
+            bean.setDay(request.getParameter("day"));
+            bean.setType(request.getParameter("type"));
+            bean.setTell(request.getParameter("tell"));
+            bean.setComment(request.getParameter("comment"));
+            
 
             //セッションに格納
-            session.setAttribute("name", name);
-            session.setAttribute("year", year);
-            session.setAttribute("month",month);
-            session.setAttribute("day", day);
-            session.setAttribute("type", type);
-            session.setAttribute("tell", tell);
-            session.setAttribute("comment", comment);
+            session.setAttribute("bean", bean);
             System.out.println("Session updated!!");
             
             request.getRequestDispatcher("/insertconfirm.jsp").forward(request, response);
