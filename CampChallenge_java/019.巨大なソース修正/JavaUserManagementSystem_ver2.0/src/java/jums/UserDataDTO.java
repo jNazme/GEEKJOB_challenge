@@ -16,8 +16,7 @@ public class UserDataDTO {
     private String tell;
     private int type;
     private String comment;
-    private Timestamp newDate;
-    
+    private Timestamp newDate;    
     
     public int getUserID() {
         return userID;

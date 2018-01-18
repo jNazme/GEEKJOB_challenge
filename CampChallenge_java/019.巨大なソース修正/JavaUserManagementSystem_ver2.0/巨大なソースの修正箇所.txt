@@ -1,0 +1,27 @@
+修正箇所
+DBManager  ポート版帽　8889 パスワード root DB名 big_source　に修正
+
+検索結果クリックすると違うのが出る(searchresult.jsp→resultdetail.jsp)
+
+削除クリックしたとき削除画面に飛ばない、Delete.javaへセッションで数値を渡しdelete.jspへ飛びセッションの数値を渡すように修正。
+
+削除画面をクリックしたとき削除後画面に飛ばない→削除後画面に飛ばしデータを削除する。
+Deleteresultにホームへのリンクを追加。
+
+UserDataDAOにdelete,updateメソッドを追加
+
+変更をクリックしたとき空欄にセッションのデータを入れた
+
+Searchしたとき全部が合ってないとエラーになる
+Userdatadao のsearchメソッド内のプリペアドステートメントの記述を変更
+検索結果が空のときエラーになる→空のときの処理を作った searchresult.jsp
+
+resultdetailのユーザーIDが２に固定なので修正 resultdata.java
+
+UPDATE.jspに取得したデータを欄に表示するようにしたい monthのテキストが空欄なので追加 ymd追加
+
+DELETE.JAVA UPDATE.JAVAに セッションのHIDDENのあれを追加
+
+更新時に確認を行うUPDATEconfirmファイルを追加
+
+Web.xmlを書き換え

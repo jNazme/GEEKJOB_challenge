@@ -1,8 +1,9 @@
 <%@page import="jums.JumsHelper"
-        import="jums.UserDataDTO" %>
+        import="jums.UserDataDTO"%>
 <%
     JumsHelper jh = JumsHelper.getInstance();
     UserDataDTO udd = (UserDataDTO)request.getAttribute("resultData");
+     HttpSession hs = request.getSession();
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -23,9 +24,12 @@
     
     <form action="DeleteResult" method="POST">
       <input type="submit" name="YES" value="はい"style="width:100px">
+      <input type="hidden" name="ac"  value="<%= hs.getAttribute("ac")%>">
     </form><br>
     <form action="ResultDetail" method="POST">
       <input type="submit" name="NO" value="詳細画面に戻る"style="width:100px">
+      
     </form>
+    
     </body>
 </html>

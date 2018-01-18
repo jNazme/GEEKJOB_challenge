@@ -1,4 +1,5 @@
 <%@page import="jums.JumsHelper"
+        import="javax.servlet.http.HttpSession"
         import="jums.UserDataDTO" %>
 <%
     JumsHelper jh = JumsHelper.getInstance();
@@ -12,6 +13,11 @@
         <title>JUMS検索結果画面</title>
     </head>
     <body>
+        <%  
+         if(udd.getName()==null){%>
+             <h1>検索の結果、ユーザーが見つかりませんでした</h1>
+        <% }else{ %>
+        
         <h1>検索結果</h1>
         <table border=1>
             <tr>
@@ -26,7 +32,7 @@
                 <td><%= udd.getType()%></td>
                 <td><%= udd.getNewDate()%></td>
             </tr>
-        </table>
+        </table><% } %>
     </body>
     <%=jh.home()%>
 </html>

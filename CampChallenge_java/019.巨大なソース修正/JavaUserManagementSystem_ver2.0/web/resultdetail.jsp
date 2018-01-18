@@ -1,8 +1,12 @@
 <%@page import="jums.JumsHelper"
-        import="jums.UserDataDTO" %>
+        import="jums.UserDataDTO"
+        import="jums.UserDataBeans"
+        import="javax.servlet.http.HttpSession"%>
 <%
+    HttpSession hs = request.getSession();
     JumsHelper jh = JumsHelper.getInstance();
     UserDataDTO udd = (UserDataDTO)request.getAttribute("resultData");
+    session.setAttribute("udd",udd);
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -20,10 +24,10 @@
         自己紹介:<%= udd.getComment()%><br>
         登録日時:<%= udd.getNewDate()%><br>
         <form action="Update" method="POST">
-        <input type="submit" name="update" value="変更"style="width:100px">
+        <input type="submit" name="Update" value="変更"style="width:100px">
         </form>
         <form action="Delete" method="POST">
-        <input type="submit" name="delete" value="削除"style="width:100px">
+        <input type="submit" name="Delete" value="削除"style="width:100px">
         </form>
     </body>
 </html>

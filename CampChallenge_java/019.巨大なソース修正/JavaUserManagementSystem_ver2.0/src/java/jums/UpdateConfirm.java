@@ -1,18 +1,19 @@
 package jums;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.ResultSet;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
- *
+ * insertconfirm.jspと対応するサーブレット
+ * フォーム入力された情報はここでセッションに格納し、以降持ちまわることになる
+ * 直接アクセスした場合はerror.jspに振り分け
  * @author hayashi-s
  */
-public class SearchResult extends HttpServlet {
+public class UpdateConfirm extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -25,38 +26,39 @@ public class SearchResult extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        //セッションスタート
+        HttpSession session = request.getSession();
+        
         try{
             request.setCharacterEncoding("UTF-8");//リクエストパラメータの文字コードをUTF-8に変更
-        
+            
+            //アクセスルートチェック
+            String accesschk = request.getParameter("ac");
+            if(accesschk ==null || (Integer)session.getAttribute("ac")!=Integer.parseInt(accesschk)){
+                throw new Exception("不正なアクセスです");
+            }
+            
             //フォームからの入力を取得して、JavaBeansに格納
             UserDataBeans udb = new UserDataBeans();
-            if(request.getParameter("year") instanceof String){
-                System.out.println("string");
-            }
-            if(!(request.getParameter("year") instanceof String)){
-                
-            }
             udb.setName(request.getParameter("name"));
             udb.setYear(request.getParameter("year"));
+            udb.setMonth(request.getParameter("month"));
+            udb.setDay(request.getParameter("day"));
             udb.setType(request.getParameter("type"));
+            udb.setTell(request.getParameter("tell"));
+            udb.setComment(request.getParameter("comment"));
 
-            //DTOオブジェクトにマッピング。DB専用のパラメータに変換
-            UserDataDTO searchData = new UserDataDTO();
-            udb.UD2DTOMapping(searchData);
-            System.out.println("aftermapping");
-            UserDataDTO resultData = UserDataDAO .getInstance().search(searchData);
-            System.out.println("afterdb");
-            String errorMassage = "";
-            request.setAttribute("resultData", resultData);
-            request.setAttribute("errorMassage", errorMassage);
-            request.getRequestDispatcher("/searchresult.jsp").forward(request, response);  
+            //ユーザー情報群をセッションに格納
+            session.setAttribute("udb", udb);
+            System.out.println("Session updated!!");
+            
+            request.getRequestDispatcher("/updateconfirm.jsp").forward(request, response);
         }catch(Exception e){
-            //何らかの理由で失敗したらエラーページにエラー文を渡して表示。想定は不正なアクセスとDBエラー
             request.setAttribute("error", e.getMessage());
             request.getRequestDispatcher("/error.jsp").forward(request, response);
         }
-        
-        
+            
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
